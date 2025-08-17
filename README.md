@@ -110,8 +110,8 @@ graph TB
     Client <--> Server
     Server <--> Orchestrator
     Orchestrator <--> Agents
-    Orchestrator <--> BMAD Pipeline
-    Agents <--> MCP Adapters
+    Orchestrator <--> [BMAD Pipeline]
+    Agents <--> [MCP Adapters]
     GitHub <--> GitHubAPI
     Memory <--> MemoryServer
     Sequential <--> SequentialServer
