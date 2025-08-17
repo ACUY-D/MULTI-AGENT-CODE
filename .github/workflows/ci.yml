@@ -233,6 +233,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           
+      - name: Install dependencies
+        run: npm ci
+          
       - name: Run security audit
         run: npm audit --production
         continue-on-error: true
@@ -342,7 +345,8 @@ jobs:
             CI Pipeline ${{ job.status }} for ${{ github.repository }}
             Commit: ${{ github.sha }}
             Author: ${{ github.actor }}
-          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           
       - name: Comment on PR
         if: github.event_name == 'pull_request'
@@ -355,9 +359,9 @@ jobs:
             | Test Suite | Status |
             |------------|--------|
             | Lint | ${{ needs.lint.result }} |
-            | Unit Tests | ${{ needs.unit-tests.result }} |
-            | Integration Tests | ${{ needs.integration-tests.result }} |
-            | E2E Tests | ${{ needs.e2e-tests.result }} |
+            | Unit Tests | ${{ needs['unit-tests'].result }} |
+            | Integration Tests | ${{ needs['integration-tests'].result }} |
+            | E2E Tests | ${{ needs['e2e-tests'].result }} |
             | Build | ${{ needs.build.result }} |
             
             [View full logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;

@@ -46,7 +46,7 @@
     "lint": "biome check --apply .",
     "lint:fix": "biome check --apply --unsafe .",
     "format": "biome format --write .",
-    "format:check": "biome format .",
+    "format:check": "biome format --check .",
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:unit": "vitest run tests/unit",
