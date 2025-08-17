@@ -147,7 +147,7 @@ jobs:
           CI: true
           
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-report-${{ matrix.browser }}
@@ -155,7 +155,7 @@ jobs:
           retention-days: 7
           
       - name: Upload test videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-videos-${{ matrix.browser }}
@@ -190,7 +190,7 @@ jobs:
         run: npm run build
         
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: dist/
