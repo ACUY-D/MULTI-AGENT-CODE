@@ -71,7 +71,19 @@
         "useConst": "error",
         "useSingleVarDeclarator": "error"
       }
-    }
+    },
+    "overrides": [
+      {
+        "include": ["examples/**/*"],
+        "linter": {
+          "rules": {
+            "suspicious": {
+              "noConsoleLog": "off"
+            }
+          }
+        }
+      }
+    ]
   },
   "formatter": {
     "enabled": true,
