@@ -1,0 +1,37 @@
+# Development
+.github/
+.vscode/
+tests/
+examples/src/
+docs/
+*.test.ts
+*.spec.ts
+
+# Config files
+.env
+.env.*
+tsconfig.json
+vitest.config.ts
+playwright.config.ts
+biome.json
+
+# Build artifacts
+*.log
+coverage/
+.nyc_output/
+test-results/
+
+# Source (only publish dist)
+src/
+!dist/
+
+# Misc
+.DS_Store
+*.swp
+*.swo
+.kilo/
+ARCH.md
+DECISIONS.md
+TASKPLAN.md
+TECH-SPEC.md
+tsup.config.ts

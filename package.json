@@ -1,0 +1,194 @@
+{
+  "name": "@mcp/dev-orchestrator",
+  "version": "1.0.0",
+  "description": "Production-ready MCP server implementing a multi-agent system for fully automated software development lifecycle with the KILO CODE methodology and BMAD framework",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "mcp-orchestrator": "./dist/cli/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./cli": {
+      "types": "./dist/cli/index.d.ts",
+      "import": "./dist/cli/index.js",
+      "require": "./dist/cli/index.cjs"
+    },
+    "./tools": {
+      "types": "./dist/tools/index.d.ts",
+      "import": "./dist/tools/index.js"
+    },
+    "./resources": {
+      "types": "./dist/resources/index.d.ts",
+      "import": "./dist/resources/index.js"
+    },
+    "./prompts": {
+      "types": "./dist/prompts/index.d.ts",
+      "import": "./dist/prompts/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "start": "node dist/index.js",
+    "start:stdio": "node dist/index.js --stdio",
+    "start:http": "node dist/index.js --http --port 3001",
+    "clean": "rm -rf dist .tmp-test .tmp-e2e-test coverage playwright-report test-results node_modules",
+    "reinstall": "npm run clean && npm install",
+    "lint": "biome check --apply .",
+    "lint:fix": "biome check --apply --unsafe .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test:ci": "npm run lint && npm run type-check && npm run test:coverage && npm run test:e2e",
+    "coverage": "vitest run --coverage",
+    "coverage:html": "vitest run --coverage && open coverage/index.html",
+    "e2e:headed": "playwright test --headed",
+    "e2e:debug": "playwright test --debug",
+    "e2e:codegen": "playwright codegen",
+    "e2e:report": "playwright show-report",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run test:all && npm run build",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "release": "npm version patch",
+    "release:minor": "npm version minor",
+    "release:major": "npm version major",
+    "docs": "typedoc --out docs src/index.ts",
+    "docs:serve": "npx serve docs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "artificial-intelligence",
+    "orchestrator",
+    "bmad",
+    "pipeline",
+    "development",
+    "automation",
+    "llm",
+    "multi-agent",
+    "software-development",
+    "code-generation",
+    "gpt",
+    "claude",
+    "anthropic",
+    "openai",
+    "testing",
+    "debugging",
+    "architecture",
+    "typescript",
+    "nodejs",
+    "cli",
+    "devops",
+    "cicd",
+    "agile",
+    "kilo-code"
+  ],
+  "author": {
+    "name": "MCP Team",
+    "email": "support@mcp-orchestrator.dev",
+    "url": "https://mcp-orchestrator.dev"
+  },
+  "contributors": [
+    {
+      "name": "Lead Developer",
+      "email": "lead@mcp-orchestrator.dev"
+    },
+    {
+      "name": "AI Specialist",
+      "email": "ai@mcp-orchestrator.dev"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "@octokit/rest": "^20.0.2",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "execa": "^8.0.1",
+    "glob": "^10.3.10",
+    "inquirer": "^9.2.12",
+    "ora": "^8.0.1",
+    "pino": "^8.17.2",
+    "pino-pretty": "^10.3.1",
+    "uuid": "^9.0.1",
+    "xstate": "^5.9.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@playwright/test": "^1.41.1",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.5",
+    "@types/uuid": "^9.0.7",
+    "@vitest/coverage-v8": "^2.1.9",
+    "@vitest/ui": "^2.1.9",
+    "audit-ci": "^6.6.1",
+    "husky": "^9.0.0",
+    "playwright": "^1.41.1",
+    "tsup": "^8.0.1",
+    "tsx": "^4.7.0",
+    "typedoc": "^0.25.7",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vitest": "^2.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcp-team/mcp-dev-orchestrator.git",
+    "directory": "/"
+  },
+  "bugs": {
+    "url": "https://github.com/mcp-team/mcp-dev-orchestrator/issues",
+    "email": "bugs@mcp-orchestrator.dev"
+  },
+  "homepage": "https://github.com/mcp-team/mcp-dev-orchestrator#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/mcp-team"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/mcp-orchestrator"
+    }
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "tests",
+    "doc": "docs",
+    "example": "examples"
+  },
+  "os": ["darwin", "linux", "win32"],
+  "cpu": ["x64", "arm64"],
+  "private": false,
+  "sideEffects": false,
+  "packageManager": "pnpm@8.0.0"
+}
