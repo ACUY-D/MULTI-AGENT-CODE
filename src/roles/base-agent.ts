@@ -12,19 +12,19 @@ import {
   TimeoutError,
   ValidationError
 } from '../core/errors';
-import type { 
-  AgentCapability, 
-  AgentContext, 
+import type {
+  AgentCapability,
+  AgentContext,
   AgentEvent,
   AgentInfo,
-  AgentMessage, 
+  AgentMessage,
   AgentMetrics,
   AgentResult,
   AgentType,
   EventHandler,
-  MessageType,
   Metrics
 } from '../types';
+import { MessageType } from '../types';
 import { createLogger } from '../utils/logger';
 
 /**
