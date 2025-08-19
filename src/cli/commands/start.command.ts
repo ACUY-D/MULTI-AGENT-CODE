@@ -145,20 +145,34 @@ export class StartCommand {
 
       spinner.text = 'Creating HTTP server...';
 
-      // Import and start HTTP server
-      const { createHTTPServer } = await import('../server/http-server');
-      const httpServer = await createHTTPServer({
-        host,
-        port,
-      });
+      try {
+        const { createHTTPServer } = await import('@cli/server/http-server');
 
-      spinner.text = 'Starting HTTP server...';
-      await httpServer.start();
+        const httpServer = await createHTTPServer({
+          host,
+          port,
+        });
 
-      this.isRunning = true;
-      cliLogger.spinnerSuccess(`HTTP server started on ${host}:${port}`);
+        spinner.text = 'Starting HTTP server...';
+        await httpServer.start();
 
-      logger.info({ host, port }, 'MCP server started in HTTP mode');
+        this.isRunning = true;
+        cliLogger.spinnerSuccess(`HTTP server started on ${host}:${port}`);
+
+        logger.info({ host, port }, 'MCP server started in HTTP mode');
+      } catch (error: any) {
+        if (
+          error.code === 'ERR_MODULE_NOT_FOUND' ||
+          (typeof error.message === 'string' &&
+            error.message.includes('Cannot find module'))
+        ) {
+          cliLogger.error(
+            'HTTP server implementation not found. Please run with --stdio or ensure the HTTP server module is available.',
+          );
+        }
+
+        throw error;
+      }
     } catch (error) {
       cliLogger.spinnerFail('Failed to initialize HTTP server');
       throw error;
