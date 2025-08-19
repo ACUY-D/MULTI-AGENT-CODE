@@ -86,7 +86,8 @@ const ConfigSchema = z.object({
 export type Config = z.infer<typeof ConfigSchema>;
 
 /**
- * Configuration file paths in order of priority (lowest to highest)
+ * Configuration file paths in order of priority (lowest to highest).
+ * The official configuration filename is `mcp-orchestrator.config.json`.
  */
 const CONFIG_FILES = [
   'mcp-orchestrator.config.json',

@@ -371,7 +371,7 @@ ENABLE_METRICS=true
 
 ### Configuration File
 
-Create `orchestrator.config.json`:
+Create `mcp-orchestrator.config.json`:
 
 ```json
 {

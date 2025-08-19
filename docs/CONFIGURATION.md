@@ -117,7 +117,7 @@ AUTO_CLEANUP=true                  # Auto cleanup old files
 
 ### Main Configuration File
 
-Create `orchestrator.config.json` in your project root:
+Create `mcp-orchestrator.config.json` in your project root:
 
 ```json
 {
@@ -242,7 +242,7 @@ Create `orchestrator.config.json` in your project root:
 
 ### YAML Configuration Alternative
 
-You can also use YAML format (`orchestrator.config.yaml`):
+You can also use YAML format (`mcp-orchestrator.config.yaml`):
 
 ```yaml
 version: "1.0.0"
@@ -972,7 +972,7 @@ mcp-orchestrator config test
 
 ```bash
 # Check file location
-ls -la orchestrator.config.{json,yaml,yml}
+ls -la mcp-orchestrator.config.{json,yaml,yml}
 
 # Verify syntax
 mcp-orchestrator config validate --file ./config.json
@@ -1049,7 +1049,7 @@ const newConfig = {
   }, {})
 };
 
-fs.writeFileSync('./orchestrator.config.json', JSON.stringify(newConfig, null, 2));
+fs.writeFileSync('./mcp-orchestrator.config.json', JSON.stringify(newConfig, null, 2));
 ```
 
 ---

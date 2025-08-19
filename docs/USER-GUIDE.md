@@ -263,7 +263,7 @@ Navigate using arrow keys:
 
 ### Using Configuration Files
 
-Create `orchestrator.yaml`:
+Create `mcp-orchestrator.config.yaml`:
 
 ```yaml
 project:
@@ -309,7 +309,7 @@ agents:
 Run with config:
 
 ```bash
-mcp-orchestrator run --config orchestrator.yaml
+mcp-orchestrator run --config mcp-orchestrator.config.yaml
 ```
 
 ## CLI Commands
