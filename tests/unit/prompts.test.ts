@@ -49,5 +49,7 @@ describe('MCP Prompts - Orchestrator definitions', () => {
     const built = await registry.build('/status', {});
     expect(built.name).toBe('/status');
     expect(built.messages.length).toBeGreaterThan(0);
+    expect(built.variables).toEqual({});
+    expect(built.suggestedTools ?? []).toHaveLength(0);
   });
 });
